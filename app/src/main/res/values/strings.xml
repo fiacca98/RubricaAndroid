@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">RubricaTelefonica</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="add">+</string>
+    <string name="back">back</string>
+    <string name="nome">Nome</string>
+    <string name="numero">numero</string>
+    <string name="aggiungi">aggiungi</string>
+</resources>
