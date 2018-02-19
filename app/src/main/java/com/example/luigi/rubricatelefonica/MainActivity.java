@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -89,6 +90,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-        adapter.notifyDataSetChanged();
+        adapter.refreshValues();
     }
 }

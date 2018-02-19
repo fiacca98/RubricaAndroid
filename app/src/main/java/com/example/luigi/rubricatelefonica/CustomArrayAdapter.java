@@ -29,6 +29,10 @@ class CustomArrayAdapter extends ArrayAdapter<Contatto>{
         this.context = context;
     }
 
+    public void refreshValues(){
+        this.values = Singleton.getOurInstance().getItemList();
+        notifyDataSetChanged();
+    }
 
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -64,6 +68,11 @@ class CustomArrayAdapter extends ArrayAdapter<Contatto>{
 
         return rowView;
 
+    }
+
+    @Override
+    public int getCount() {
+        return values.size();
     }
 
     public View getViewOptimize(int position, View convertView, ViewGroup parent){

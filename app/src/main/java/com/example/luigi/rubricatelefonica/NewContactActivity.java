@@ -63,7 +63,7 @@ public class NewContactActivity extends Activity{
                 EditText nome = (EditText) findViewById(R.id.nome);
                 String nomeString = valueOf(nome.getText());
                 EditText numero = (EditText) findViewById(R.id.numero);
-                String numeroString = valueOf(nome.getText());
+                String numeroString = valueOf(numero.getText());
                 contatto = new Contatto(nomeString, numeroString);
                 ArrayUtility.addData(contatto);
                 finish();
