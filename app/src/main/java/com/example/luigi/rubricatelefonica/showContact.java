@@ -1,7 +1,9 @@
 package com.example.luigi.rubricatelefonica;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,16 +22,20 @@ public class showContact extends Activity{
         setContentView(R.layout.showcontact);
 
         Intent intent = getIntent();
-        String selectedItem = intent.getStringExtra(MainActivity.EXTRA_SELECTED_ITEM);
+        final String nome = intent.getStringExtra("nome");
+        String numero = intent.getStringExtra("numero");
 
         // Set TextView
-        TextView resultTextView = (TextView) findViewById(R.id.detailTextView);
-        resultTextView.setText(selectedItem);
+        TextView nameTextView = (TextView) findViewById(R.id.nome);
+        nameTextView.setText(nome);
+
+        TextView numberTextView = (TextView) findViewById(R.id.number);
+        numberTextView.setText(numero);
 
         // Set ImageView
         ImageView imageView = (ImageView) findViewById(R.id.detailImageView);
         imageView.setImageResource(R.drawable.ic_fruit);
-        String uri = "ic_" + selectedItem.toLowerCase();
+        String uri = "ic_" + nome.toLowerCase();
 
         if (uri != null && uri.length() > 0) {
 
@@ -43,13 +49,24 @@ public class showContact extends Activity{
         }
 
         // Set onclick listener
-        Button detailButton = (Button) findViewById(R.id.detailButton);
-        detailButton.setOnClickListener(new View.OnClickListener() {
+
+        Button favouriteButton = (Button) findViewById(R.id.favourite);
+        favouriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("ciao", "ciao");
+                ArrayUtility.setSharedPreferences(nome, showContact.this);
+            }
+        });
+
+        Button backButton = (Button) findViewById(R.id.back);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
     }
 
 }

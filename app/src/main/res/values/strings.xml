@@ -7,4 +7,5 @@
     <string name="nome">Nome</string>
     <string name="numero">numero</string>
     <string name="aggiungi">aggiungi</string>
+    <string name="preference_file_key">mamma</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.luigi.rubricatelefonica;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,9 +46,11 @@ class CustomArrayAdapter extends ArrayAdapter<Contatto>{
 
         TextView textViewName = (TextView) rowView.findViewById(R.id.name);
         TextView textViewNumber = (TextView) rowView.findViewById(R.id.number);
+        ImageView imageViewStar = (ImageView) rowView.findViewById(R.id.star);
         Contatto itemName = this.values.get(position);
         textViewName.setText(itemName.getNome());
         textViewNumber.setText(itemName.getNumero());
+
 
         // Set icon
         ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
@@ -66,6 +69,16 @@ class CustomArrayAdapter extends ArrayAdapter<Contatto>{
             }
         }
 
+        String preferito = ArrayUtility.readFromSharedPreferences(this.context);
+        if(preferito != null)
+            Log.d("preferito",preferito);
+        else
+            Log.d("preferito","is null");
+        if(preferito != null && preferito.equals(itemName.getNome()))
+        {
+            imageViewStar.setVisibility(View.VISIBLE);
+        }
+
         return rowView;
 
     }
@@ -82,17 +95,23 @@ class CustomArrayAdapter extends ArrayAdapter<Contatto>{
             convertView = inflater.inflate(R.layout.item_layout, null);
             viewHolder = new ViewHolder();
             viewHolder.name = (TextView)convertView.findViewById(R.id.name);
+            viewHolder.logo = (ImageView)convertView.findViewById(R.id.logo);
             viewHolder.number = (TextView)convertView.findViewById(R.id.number);
+            viewHolder.star = (ImageView)convertView.findViewById(R.id.star);
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
         }
+
         Singleton singleton = Singleton.getOurInstance();
         List<Contatto> contactList = new ArrayList<Contatto>();
         contactList = singleton.getItemList();
         Contatto contatto = contactList.get(position);
         viewHolder.name.setText(contatto.getNome());
         viewHolder.number.setText(contatto.getNumero());
+        String favouriteContact = ArrayUtility.readFromSharedPreferences(context);
+        if(contatto.getNome().equals(favouriteContact))
+            viewHolder.star.setVisibility(View.VISIBLE);
 
         return convertView;
     }
@@ -100,7 +119,8 @@ class CustomArrayAdapter extends ArrayAdapter<Contatto>{
     private class ViewHolder{
         public TextView name;
         public TextView number;
-        public ImageView image;
+        public ImageView logo;
+        public ImageView star;
     }
 
 }

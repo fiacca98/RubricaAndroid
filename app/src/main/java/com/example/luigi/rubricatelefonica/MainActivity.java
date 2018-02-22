@@ -35,38 +35,19 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
-        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
                 final Contatto item = ArrayUtility.getDataSourceItemList(MainActivity.this).get(position);
 
-                /*Intent intent = new Intent(MainActivity.this,showFruit.class);
-                intent.putExtra(EXTRA_SELECTED_ITEM,item);
+                Intent intent = new Intent(MainActivity.this,showContact.class);
+                intent.putExtra("nome",item.getNome());
+                intent.putExtra("numero", item.getNumero());
 
-                startActivity(intent);*/
-                /*final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-
-                builder.setTitle("Alert");
-                //alertDialog.setMessage("Alert message to be shown");
-                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        ArrayUtility.removeData(position);
-                        adapter.notifyDataSetChanged();
-                        dialog.cancel();
-                    }
-                });
-                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                builder.show();
+                startActivity(intent);
 
             }
-        });*/
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

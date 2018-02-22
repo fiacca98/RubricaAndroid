@@ -40,22 +40,7 @@ public class NewContactActivity extends Activity{
 
 
 
-        // Set ImageView
-        /*ImageView imageView = (ImageView) findViewById(R.id.detailImageView);
-        imageView.setImageResource(R.drawable.ic_fruit);
-        String uri = "ic_" + selectedItem.toLowerCase();
 
-        if (uri != null && uri.length() > 0) {
-
-            try {
-                int imageResource = getResources().getIdentifier(uri, "drawable", getPackageName());
-                Drawable image = getResources().getDrawable(imageResource, null);
-                imageView.setImageDrawable(image);
-            } catch (Exception e) {
-                Log.w("LIST_EXAMPLE", "Exception while retrieving resource " + uri);
-            }
-        }*/
-        // Set onclick listener
         Button detailButton = (Button) findViewById(R.id.detailButton);
         detailButton.setOnClickListener(new View.OnClickListener() {
             @Override
